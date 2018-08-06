@@ -4,12 +4,18 @@ describe("phoneList", function() {
 
   //Test the controller
   describe("PhoneListController", function() {
-    it("should create a `phones` model with 3 phones", inject(function(
-      $componentController
-    ) {
-      var ctrl = $componentController("phoneList");
+    var ctrl;
 
-      expect(ctrl.phones.length).toBe(3);
+    beforeEach(inject(function($componentController) {
+      ctrl = $componentController("phoneList");
     }));
+
+    it("should create a `phones` model with 3 phones", function() {
+      expect(ctrl.phones.length).toBe(3);
+    });
+
+    it("should set a default value for the `orderProp` modle", function() {
+      expect(ctrl.orderProp).toBe("age");
+    });
   });
 });

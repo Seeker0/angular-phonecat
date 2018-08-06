@@ -2,19 +2,31 @@
   <div class="row">
     <div class="col-md-2">
 
-      Search: <input ng-model="$ctrl.query" />
+      <p>
+        Search:
+        <input ng-model="$ctrl.query" />
+      </p>
+
+      <p>Current display order: <span>{{$ctrl.orderProp || 'default'}}</span></p>
+
+      <p> Sort by:
+        <select ng-model="$ctrl.orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </p>
 
     </div>
+      <div class="col-md-10">
+        <!--Body content-->
 
-    <div class="col-md-10">
-      <!--Body content-->
-      <ul class="phones">
-        <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query">
-          <span>{{phone.name}}</span>
-          <p>{{phone.snippet}}</p>
-        </li>
-      </ul>
+        <ul class="phones">
+          <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp">
+            <span>{{phone.name}}</span>
+            <p>{{phone.snippet}}</p>
+          </li>
+        </ul>
+
+      </div>
     </div>
-
-  </div>
 </div>
