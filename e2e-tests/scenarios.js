@@ -8,6 +8,11 @@ describe("PhoneCat Application", function() {
     beforeEach(function() {
       browser.get("index.html");
     });
+    it("should access the phoneList", function() {
+      var phoneList = element.all(by.repeater("phone in $ctrl.phones"));
+
+      expect(phoneList.count()).toBe(3);
+    });
     it("should filter the phone list as a user types into the search box", function() {
       var phoneList = element.all(by.repeater("phone in $ctrl.phones"));
       var query = element(by.model("$ctrl.query"));
